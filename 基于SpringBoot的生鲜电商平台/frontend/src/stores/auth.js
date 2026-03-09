@@ -17,6 +17,7 @@ export const useAuthStore = defineStore('auth', () => {
   const user = ref(safeParseJSON(localStorage.getItem('user')))
 
   const isAuthenticated = computed(() => !!token.value)
+  const isAdmin = computed(() => user.value?.role === 'ADMIN')
 
   async function login(credentials) {
     try {
@@ -58,6 +59,7 @@ export const useAuthStore = defineStore('auth', () => {
     token,
     user,
     isAuthenticated,
+    isAdmin,
     login,
     register,
     logout

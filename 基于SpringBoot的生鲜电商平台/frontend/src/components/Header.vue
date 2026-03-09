@@ -26,6 +26,9 @@
         </el-badge>
         
         <template v-if="authStore.isAuthenticated">
+          <el-button v-if="authStore.isAdmin" type="danger" @click="$router.push('/admin')">
+            管理后台
+          </el-button>
           <el-dropdown @command="handleCommand">
             <el-button :icon="User">
               {{ authStore.user?.username || '用户' }}
