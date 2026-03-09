@@ -7,13 +7,15 @@ import App from './App.vue'
 import router from './router'
 
 const app = createApp(App)
+const pinia = createPinia()
 
 // Register all Element Plus icons
 for (const [key, component] of Object.entries(ElementPlusIconsVue)) {
   app.component(key, component)
 }
 
-app.use(createPinia())
+// 先安装Pinia，再安装Router（避免router使用store时pinia未初始化）
+app.use(pinia)
 app.use(router)
 app.use(ElementPlus)
 
