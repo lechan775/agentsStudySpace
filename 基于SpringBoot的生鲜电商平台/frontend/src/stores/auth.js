@@ -3,9 +3,18 @@ import { ref, computed } from 'vue'
 import { authAPI } from '../api'
 import router from '../router'
 
+// Safe JSON parse helper
+function safeParseJSON(value) {
+  try {
+    return value ? JSON.parse(value) : null
+  } catch {
+    return null
+  }
+}
+
 export const useAuthStore = defineStore('auth', () => {
   const token = ref(localStorage.getItem('token') || '')
-  const user = ref(JSON.parse(localStorage.getItem('user') || 'null'))
+  const user = ref(safeParseJSON(localStorage.getItem('user')))
 
   const isAuthenticated = computed(() => !!token.value)
 

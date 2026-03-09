@@ -45,6 +45,11 @@ export const authAPI = {
   register: (data) => api.post('/auth/register', data)
 }
 
+// Category APIs
+export const categoryAPI = {
+  getList: () => api.get('/categories')
+}
+
 // Product APIs
 export const productAPI = {
   getList: (params) => api.get('/products', { params }),
